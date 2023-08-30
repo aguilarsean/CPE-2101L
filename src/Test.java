@@ -11,7 +11,8 @@ public class Test {
         if (in == 1) {
             System.out.println("Hello World!");
         }
-        System.out.print("Adios");
+        System.out.println("Adios");
+        System.out.print("This is a test");
 
         scanner.close();
     }
