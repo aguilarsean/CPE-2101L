@@ -25,8 +25,36 @@ public class Day_of_the_Week {
 		j = year/100;
 		k = year % 100;
 		h = (q + 26*(m+1)/10 + k + k/4 + j/4 + 5*j) % 7;
-		
-		System.out.println("Day of the Week is " + days[h]);
+
+		String dayOfWeek;
+		switch (h) {
+			case 0:
+				dayOfWeek = days[0];
+				break;
+			case 1:
+				dayOfWeek = days[1];
+				break;
+			case 2:
+				dayOfWeek = days[2];
+				break;
+			case 3:
+				dayOfWeek = days[3];
+				break;
+			case 4:
+				dayOfWeek = days[4];
+				break;
+			case 5:
+				dayOfWeek = days[5];
+				break;
+			case 6:
+				dayOfWeek = days[6];
+				break;
+			default:
+				dayOfWeek = "Invalid day";
+				break;
+		}
+
+		System.out.println("Day of the Week is " + dayOfWeek);
 		
 		scanner.close();
 		
