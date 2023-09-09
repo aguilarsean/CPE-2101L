@@ -75,6 +75,9 @@ public class Phonebook {
 		}
 	}
 
+	public ArrayList<Contact> getContactList() {
+		return contactList;
+	}
 
 	public void addContact(Contact contact) {
 		contactList.add(contact);
@@ -88,7 +91,7 @@ public class Phonebook {
 		}
 	}
 
-	public void editContact(int no, int choice, String newFirstName, String newMiddleName, String newLastName, String newPhoneNumber) {
+	public boolean editContact(int no, int choice, String newFirstName, String newMiddleName, String newLastName, String newPhoneNumber) {
 		for (Contact contact : contactList) {
 			if (contact.getNo() == no) {
 				if (choice == 1) {
@@ -109,18 +112,26 @@ public class Phonebook {
 					}
 				} else {
 					System.out.println("Invalid choice! No changes made.");
+					return false;
 				}
-				System.out.println("Contact edited successfully!");
-				return;
+				return true;
 			}
 		}
-		System.out.println("Contact not found! No changes made.");
+		return false;
 	}
 
-	public void deleteContact(int no) {
+
+	public boolean deleteContact(int no) {
+		int initialSize = contactList.size();
 		contactList.removeIf(contact -> contact.getNo() == no);
-		updateContacts();
+
+		if (contactList.size() < initialSize) {
+			updateContacts();
+			return true;
+		}
+		return false;
 	}
+
 
 	public void sortContact() {
 		contactList.sort(Comparator.comparing(Contact::getFirstName));
