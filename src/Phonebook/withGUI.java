@@ -49,7 +49,7 @@ public class withGUI {
                 StringBuilder contactText = new StringBuilder();
 
                 for (Contact contact : phonebook.getContactList()) {
-                    contactText.append(contact.combine()).append("\n");
+                    contactText.append(contact.getIndex()).append(". ").append(contact.getFullName()).append("\t").append(contact.getPhoneNumber()).append("\n");
                 }
 
                 textArea.setText(contactText.toString());
@@ -64,10 +64,12 @@ public class withGUI {
                 String lastName = JOptionPane.showInputDialog("Enter your last name:");
                 String phoneNumber = JOptionPane.showInputDialog("Enter your phone number:");
 
-                Contact newContact = new Contact(firstName, middleName, lastName, phoneNumber);
-                phonebook.addContact(newContact);
+                if (!firstName.isEmpty() || !middleName.isEmpty() || !lastName.isEmpty() || !phoneNumber.isEmpty()) {
+                    Contact newContact = new Contact(firstName, middleName, lastName, phoneNumber);
+                    phonebook.addContact(newContact);
 
-                JOptionPane.showMessageDialog(null, "Contact added successfully!");
+                    JOptionPane.showMessageDialog(null, "Contact added successfully!");
+                }
             }
         });
 
