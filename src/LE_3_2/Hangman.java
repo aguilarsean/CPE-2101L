@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Hangman {
     public static void main(String[] args) {
-        String[] words = {"write", "that", "program"};
+        String[] words = {"resistor", "diode", "switch", "inductor", "capacitor", "fuse", "wire", "battery", "led", "transistor"};
         boolean playAgain = true;
         Scanner scanner = new Scanner(System.in);
 
