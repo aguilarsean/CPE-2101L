@@ -1,10 +1,21 @@
 import java.util.*;
 
+interface Electronics {
+	void turnOn();
+	void turnOff();
+	void setChannel(int newChannel);
+	void setVolume(int newVolumeLevel);
+	void channelUp();
+	void channelDown();
+	void volumeUp();
+	void volumeDown();
+}
+
 public class TV_Main
 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		TV tv = new TV();
+		Electronics tv = new TV();
 		
 		System.out.print("Turn TV on/off (1 - on, 0 - off): ");
 		int onOrOff = scanner.nextInt();
@@ -16,14 +27,20 @@ public class TV_Main
 			tv.turnOff();
 		}
 		
-		while(true) {
-			System.out.println("TV Menu");
-			System.out.println("1. ");
+		while(onOrOff == 1) {
 			System.out.print("Choose a channel (1 to 120): ");
 			int channel = scanner.nextInt();
 			scanner.nextLine();
-			
 			tv.setChannel(channel);
+			tv.setVolume(3);
+			
+			System.out.println("Press 3 to open menu");
+			int menu = scanner.nextInt();
+			scanner.nextLine();
+			
+			if(menu == 3) {
+				System.out.println("");
+			}
 		}
 	}
 	
@@ -32,7 +49,7 @@ public class TV_Main
 	}
 }
 
-class TV {
+class TV implements Electronics {
     private int channel;
     private int volumeLevel;
     private boolean on;
@@ -63,19 +80,39 @@ class TV {
         System.out.println(volumeLevel);
     }
     
-    public void channelUp() {
-        this.channel = channel++;
-    }
-    
-    public void channelDown() {
-    	this.channel = channel--;
-    }
-    
-    public void volumeUp() {
-        this.volumeLevel = volumeLevel++;
-    }
-    
-    public void volumeDown() {
-        this.volumeLevel = volumeLevel--;
-    }
+	public void channelUp() {
+		if(on) {
+			channel++;
+			System.out.println("Channel - " + channel);
+		} else {
+			System.out.println("TV is off, turn it on.");
+		}
+	}
+	
+	public  void channelDown() {
+		if(on) {
+			channel--;
+			System.out.println("Channel - " + channel);
+		} else {
+			System.out.println("TV is off, turn it on.");
+		}
+	}
+	
+	public void volumeUp() {
+		if(on) {
+			volumeLevel++;
+			System.out.println("Volume - " + volumeLevel);
+		} else {
+			System.out.println("TV is off, turn it on.");
+		}
+	}
+	
+	public void volumeDown() {
+		if(on) {
+			volumeLevel--;
+			System.out.println("Volume - " + volumeLevel);
+		} else {
+			System.out.println("TV is off, turn it on.");
+		}
+	}
 }
