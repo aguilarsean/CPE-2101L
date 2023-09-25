@@ -14,7 +14,7 @@ public class TV_Main
 			tv.turnOn();
 		} else {
 			tv.turnOff();
-		}s
+		}
 		
 		while(true) {
 			System.out.println("TV Menu");
