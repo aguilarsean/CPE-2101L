@@ -41,25 +41,23 @@ public class GradeDistribution {
     }
 
     public void displayGraph() {
-        int totalGrades = getTotalGrades();
         int barWidth = 50;
-
-        System.out.println("\nGrade Distribution Graph:");
+        
+        System.out.println("0   10   20    30  40  50  60  70  80  90  100%");
+        System.out.println("|    |	  |    |   |   |   |   |   |   |    |");
+        System.out.println("****************************************************");
         for (char grade = 'A'; grade <= 'F'; grade++) {
             int percentage = getPercentage(grade);
             int numAsterisks = Math.round((float) percentage / 2);
 
-            System.out.printf("%c: %d%% |", grade, percentage);
             for (int i = 0; i < barWidth; i++) {
                 if (i < numAsterisks) {
                     System.out.print("*");
-                } else {
-                    System.out.print(" ");
                 }
             }
+            System.out.print(" " + grade);
             System.out.println();
         }
-        System.out.println("   0%   10%   20%   30%   40%   50%   60%   70%   80%   90%   100%");
     }
 
     public static void main(String[] args) {
@@ -67,11 +65,6 @@ public class GradeDistribution {
         gradeDistribution.setGrades(1, 4, 6, 2, 1);
 
         int[] grades = gradeDistribution.getGrades();
-        System.out.println("Total Grades: " + gradeDistribution.getTotalGrades());
-        for (char grade = 'A'; grade <= 'F'; grade++) {
-            System.out.printf("Percentage of %c: %d%%\n", grade, gradeDistribution.getPercentage(grade));
-        }
-
         gradeDistribution.displayGraph();
     }
 }
