@@ -36,15 +36,15 @@ class GradeDistribution {
     public int getPercentage(char grade) {
         switch (grade) {
             case 'A':
-                return (int) Math.round((double) A / getTotalGrades() * 100);
+                return (int) ((double) A / getTotalGrades() * 100);
             case 'B':
-                return (int) Math.round((double) B / getTotalGrades() * 100);
+                return (int) ((double) B / getTotalGrades() * 100);
             case 'C':
-                return (int) Math.round((double) C / getTotalGrades() * 100);
+                return (int) ((double) C / getTotalGrades() * 100);
             case 'D':
-                return (int) Math.round((double) D / getTotalGrades() * 100);
+                return (int) ((double) D / getTotalGrades() * 100);
             case 'F':
-                return (int) Math.round((double) F / getTotalGrades() * 100);
+                return (int) ((double) F / getTotalGrades() * 100);
             default:
                 return 0;
         }
