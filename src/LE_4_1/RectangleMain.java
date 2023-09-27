@@ -6,14 +6,14 @@ public class RectangleMain {
         Rectangle rectangleTwo = new Rectangle(3.5, 35.9);
 
         System.out.println("\nRectangle 1:" + "\n\twidth - " +
-                rectangleOne.width + "\n\theight - " +
-                rectangleOne.height + "\n\tarea - " +
+                rectangleOne.getWidth() + "\n\theight - " +
+                rectangleOne.getHeight() + "\n\tarea - " +
                 rectangleOne.getArea() + "\n\tperimeter - " +
                 rectangleOne.getPerimeter());
 
         System.out.println("\nRectangle 2:" + "\n\twidth - " +
-                rectangleTwo.width + "\n\theight - " +
-                rectangleTwo.height + "\n\tarea - " +
+                rectangleTwo.getWidth() + "\n\theight - " +
+                rectangleTwo.getHeight() + "\n\tarea - " +
                 rectangleTwo.getArea() + "\n\tperimeter - " +
                 rectangleTwo.getPerimeter());
     }
@@ -31,6 +31,14 @@ class Rectangle {
     public Rectangle(double width, double height) {
         this.width = width;
         this.height = height;
+    }
+    
+    public double getWidth() {
+    	return width;
+    }
+    
+    public double getHeight() {
+    	return height;
     }
 
     public double getArea() {

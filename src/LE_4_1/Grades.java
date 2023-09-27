@@ -1,6 +1,16 @@
 package LE_4_1;
 
-public class GradeDistribution {
+public class Grades {
+    public static void main(String[] args) {
+        GradeDistribution gradeDistribution = new GradeDistribution();
+        gradeDistribution.setGrades(1, 4, 6, 2, 1);
+
+        int[] grades = gradeDistribution.getGrades();
+        gradeDistribution.displayGraph();
+    }
+}
+
+class GradeDistribution {
     private int A;
     private int B;
     private int C;
@@ -43,14 +53,19 @@ public class GradeDistribution {
     public void displayGraph() {
         int barWidth = 50;
         
-        System.out.println("0   10   20    30  40  50  60  70  80  90  100%");
-        System.out.println("|    |	  |    |   |   |   |   |   |   |    |");
+        System.out.println("0   10   20   30    40   50   60   70   80   90  100%");
+        System.out.println("|    |	  |    |     |    |    |    |    |    |    |");
         System.out.println("****************************************************");
         for (char grade = 'A'; grade <= 'F'; grade++) {
             int percentage = getPercentage(grade);
             int numAsterisks = Math.round((float) percentage / 2);
 
+            if (grade == 'E') {
+            	continue;
+            }
+            
             for (int i = 0; i < barWidth; i++) {
+            	
                 if (i < numAsterisks) {
                     System.out.print("*");
                 }
@@ -58,13 +73,5 @@ public class GradeDistribution {
             System.out.print(" " + grade);
             System.out.println();
         }
-    }
-
-    public static void main(String[] args) {
-        GradeDistribution gradeDistribution = new GradeDistribution();
-        gradeDistribution.setGrades(1, 4, 6, 2, 1);
-
-        int[] grades = gradeDistribution.getGrades();
-        gradeDistribution.displayGraph();
     }
 }
