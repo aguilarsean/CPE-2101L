@@ -12,7 +12,7 @@ public class PersonTypeGUI {
     JLabel label1, label2;
     JTextField inputField1, inputField2;
     JTextArea textArea;
-    PersonType personType = new PersonType();
+    personType personType = new personType();
 
     public PersonTypeGUI() {
         frame = new JFrame("Person Type");
