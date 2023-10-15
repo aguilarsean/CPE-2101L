@@ -5,12 +5,12 @@ import java.util.Scanner;
 class CashRegister {
     private int cashOnHand;
 
-    public CashRegister() {
-        cashOnHand = 500;
+    CashRegister() {
+        this.cashOnHand = 500;
     }
 
-    public CashRegister(int cashIn) {
-        cashOnHand = cashIn;
+    CashRegister(int cashIn) {
+        this.cashOnHand = cashIn;
     }
 
     public int getCurrentBalance() {
@@ -18,22 +18,22 @@ class CashRegister {
     }
 
     public void acceptAmount(int amountIn) {
-        cashOnHand += amountIn;
+        this.cashOnHand += amountIn;
     }
 }
 
-class Dispenser {
+class DispenserType{
     private int numberOfItems;
     private int cost;
 
-    public Dispenser() {
-        numberOfItems = 50;
-        cost = 50;
+    DispenserType() {
+        this.numberOfItems = 0;
+        this.cost = 0;
     }
 
-    public Dispenser(int setNoOfItems, int setCost) {
-        numberOfItems = setNoOfItems;
-        cost = setCost;
+    DispenserType(int setNoOfItems, int setCost) {
+        this.numberOfItems = setNoOfItems;
+        this.cost = setCost;
     }
 
     public int getNoOfItems() {
@@ -45,64 +45,74 @@ class Dispenser {
     }
 
     public void makeSale() {
-        if (numberOfItems > 0) {
-            numberOfItems--;
+        if (this.numberOfItems > 0) {
+            this.numberOfItems--;
         }
     }
 }
 
 public class JuiceMachine {
-    private CashRegister cashRegister;
-    private Dispenser[] dispensers;
-    String[] items = {"Apple Juice", "Orange Juice", "Mango Lassi", "Fruit Punch"};
+    private static CashRegister cashRegister = new CashRegister();
+    private static DispenserType[] dispenserType = new DispenserType[4];
+    static Scanner scanner = new Scanner(System.in);
+    static String[] items = {"Apple Juice", "Orange Juice", "Mango Lassi", "Fruit Punch"};
 
-    public JuiceMachine() {
-        cashRegister = new CashRegister(1000);
-        dispensers = new Dispenser[4];
-
-        dispensers[0] = new Dispenser(10, 50);
-        dispensers[1] = new Dispenser(5, 75);
-        dispensers[2] = new Dispenser(7, 60);
-        dispensers[3] = new Dispenser(15, 40);
-    }
-
-    public void showSelection() {
-        System.out.println("Available Products:");
-        for (int i = 0; i < dispensers.length; i++) {
-            System.out.println(i + 1 + ". " + items[i] + " - Price: " + dispensers[i].getCost() + " cents, Items available: " + dispensers[i].getNoOfItems());
+    public static void showSelection() {
+        System.out.println("Select a product:");
+        for (int i = 0; i < dispenserType.length; i++) {
+            DispenserType dispenser = dispenserType[i];
+            System.out.println((i + 1) + ". " + items[i] + " - Cost: " + dispenser.getCost() + " cents");
         }
+        System.out.println("0. Exit");
     }
 
-    public void sellProduct(int selection) {
-        if (selection >= 1 && selection <= dispensers.length) {
-            Dispenser selectedDispenser = dispensers[selection - 1];
+    public static void sellProduct(int selection) {
+        if (selection >= 1 && selection <= dispenserType.length) {
+            DispenserType selectedDispenser = dispenserType[selection - 1];
 
             if (selectedDispenser.getNoOfItems() > 0) {
                 int productCost = selectedDispenser.getCost();
+                int depositedAmount = 0;
 
-                if (cashRegister.getCurrentBalance() >= productCost) {
-                    selectedDispenser.makeSale();
-                    cashRegister.acceptAmount(productCost);
-                    System.out.println("You have purchased a product!");
-                } else {
-                    System.out.println("Insufficient funds! Please insert more money.");
+                System.out.print("\nPlease deposit " + productCost + " cents to buy " + items[selection - 1] + ": ");
+
+                while (depositedAmount < productCost) {
+                    int deposit = scanner.nextInt();
+                    scanner.nextLine();
+
+                    depositedAmount += deposit;
+                    int remainingBalance = productCost - depositedAmount;
+
+                    if (remainingBalance > 0) {
+                        System.out.print("Please deposit " + remainingBalance + " more to buy: ");
+                    } else {
+                        cashRegister.acceptAmount(depositedAmount);
+                        selectedDispenser.makeSale();
+                        System.out.println("\nEnjoy your " + items[selection - 1] + "!");
+                        break;
+                    }
+                }
+
+                if (depositedAmount < productCost) {
+                    System.out.println("Transaction canceled! Returning money");
                 }
             } else {
-                System.out.println("Sorry, this product is out of stock.");
+                System.out.println("Sorry, this product is sold out.");
             }
-        } else {
-            System.out.println("Invalid Selection! Please try again.");
         }
     }
 
-    public void main() {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        dispenserType[0] =  new DispenserType(10,50);
+        dispenserType[1] =  new DispenserType(15,60);
+        dispenserType[2] =  new DispenserType(20,70);
+        dispenserType[3] =  new DispenserType(25,80);
         boolean isRunning = true;
 
         while (isRunning) {
-            System.out.println("\nWelcome to the Juice Machine!\n");
+            System.out.println("\nWelcome the the Juice Machine!");
             showSelection();
-            System.out.println("Enter the number of the product you want to buy (1-" + dispensers.length + "), or enter 0 to exit:");
+            System.out.print("\nEnter the number of the product you want to buy (1-" + dispenserType.length + "): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -113,10 +123,5 @@ public class JuiceMachine {
                 sellProduct(choice);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        JuiceMachine juiceMachine = new JuiceMachine();
-        juiceMachine.main();
     }
 }
