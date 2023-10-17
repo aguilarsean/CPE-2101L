@@ -66,12 +66,12 @@ public class JuiceMachine {
         System.out.println("0. Exit");
     }
 
-    public static void sellProduct(int selection) {
+    public static void sellProduct(int selection, int numOfItems) {
         if (selection >= 1 && selection <= dispenserType.length) {
             DispenserType selectedDispenser = dispenserType[selection - 1];
 
             if (selectedDispenser.getNoOfItems() > 0) {
-                int productCost = selectedDispenser.getCost();
+                int productCost = numOfItems * (selectedDispenser.getCost());
                 int depositedAmount = 0;
 
                 System.out.print("\nPlease deposit " + productCost + " cents to buy " + items[selection - 1] + ": ");
@@ -87,7 +87,11 @@ public class JuiceMachine {
                         System.out.print("Please deposit " + remainingBalance + " more to buy: ");
                     } else {
                         cashRegister.acceptAmount(depositedAmount);
-                        selectedDispenser.makeSale();
+
+                        for (int i = 1; i <= numOfItems; i++) {
+                            selectedDispenser.makeSale();
+                        }
+
                         System.out.println("\nEnjoy your " + items[selection - 1] + "!");
                         break;
                     }
@@ -115,12 +119,15 @@ public class JuiceMachine {
             System.out.print("\nEnter the number of the product you want to buy (1-" + dispenserType.length + "): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
+            System.out.print("How many will you buy? ");
+            int numOfItems = scanner.nextInt();
+            scanner.nextLine();
 
             if (choice == 0) {
                 isRunning = false;
                 System.out.println("Thank you for using the Juice Machine. Have a great day!");
             } else {
-                sellProduct(choice);
+                sellProduct(choice, numOfItems);
             }
         }
     }
