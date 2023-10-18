@@ -73,17 +73,19 @@ public class JuiceMachine {
             if (selectedDispenser.getNoOfItems() > 0) {
                 int productCost = numOfItems * (selectedDispenser.getCost());
                 int depositedAmount = 0;
+                int tries = 0;
 
                 System.out.print("\nPlease deposit " + productCost + " cents to buy " + items[selection - 1] + ": ");
 
                 while (depositedAmount < productCost) {
+                	tries++;
                     int deposit = scanner.nextInt();
                     scanner.nextLine();
 
                     depositedAmount += deposit;
                     int remainingBalance = productCost - depositedAmount;
 
-                    if (remainingBalance > 0) {
+                    if (remainingBalance > 0  && tries < 2) {
                         System.out.print("Please deposit " + remainingBalance + " more to buy: ");
                     } else {
                         cashRegister.acceptAmount(depositedAmount);
@@ -91,17 +93,18 @@ public class JuiceMachine {
                         for (int i = 1; i <= numOfItems; i++) {
                             selectedDispenser.makeSale();
                         }
+                        
+                        if (tries > 1) {
+                        	System.out.println("\nTransaction canceled! Returning money");                        	
+                        } else {                        	
+                        	System.out.println("\nEnjoy your " + items[selection - 1] + "!");
+                        }
 
-                        System.out.println("\nEnjoy your " + items[selection - 1] + "!");
                         break;
                     }
                 }
-
-                if (depositedAmount < productCost) {
-                    System.out.println("Transaction canceled! Returning money");
-                }
             } else {
-                System.out.println("Sorry, this product is sold out.");
+            	System.out.println("Sorry, this product is sold out.");
             }
         }
     }
