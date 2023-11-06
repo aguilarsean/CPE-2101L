@@ -77,31 +77,30 @@ public class JuiceMachine {
 
                 System.out.print("\nPlease deposit " + productCost + " cents to buy " + items[selection - 1] + ": ");
 
-                while (depositedAmount < productCost) {
-                	tries++;
+                while (depositedAmount < productCost && tries < 2) {
                     int deposit = scanner.nextInt();
                     scanner.nextLine();
 
                     depositedAmount += deposit;
                     int remainingBalance = productCost - depositedAmount;
 
-                    if (remainingBalance > 0  && tries < 2) {
+                    if (remainingBalance > 0) {
                         System.out.print("Please deposit " + remainingBalance + " more to buy: ");
                     } else {
                         cashRegister.acceptAmount(depositedAmount);
 
                         for (int i = 1; i <= numOfItems; i++) {
                             selectedDispenser.makeSale();
-                        }
+                        }     
                         
-                        if (tries > 1) {
-                        	System.out.println("\nTransaction canceled! Returning money");                        	
-                        } else {                        	
-                        	System.out.println("\nEnjoy your " + items[selection - 1] + "!");
-                        }
-
+                        System.out.println("\nEnjoy your " + items[selection - 1] + "!");
                         break;
                     }
+                    tries++;
+                }
+                
+                if (tries >= 2) {
+                	System.out.println("\n\nTransaction canceled! Returning money");
                 }
             } else {
             	System.out.println("Sorry, this product is sold out.");
