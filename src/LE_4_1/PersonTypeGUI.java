@@ -19,7 +19,8 @@ public class PersonTypeGUI {
 
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 400);
+        frame.setSize(400, 200);
+        frame.setResizable(false);
 
         namePanel1 = new JPanel(new GridLayout());
         namePanel2 = new JPanel(new GridLayout());
