@@ -9,6 +9,11 @@ class CashRegister {
         this.cashOnHand = 500;
     }
 
+    /**
+     * Creates a CashRegister with a custom balance
+     *
+     * @param cashIn - The initial balance of the CashRegister.
+     */
     CashRegister(int cashIn) {
         this.cashOnHand = cashIn;
     }
@@ -17,6 +22,11 @@ class CashRegister {
         return cashOnHand;
     }
 
+    /**
+     * Accepts an amount and adds it to the CashRegister's balance.
+     *
+     * @param amountIn - The amount to be added to the balance.
+     */
     public void acceptAmount(int amountIn) {
         this.cashOnHand += amountIn;
     }
@@ -31,6 +41,12 @@ class DispenserType{
         this.cost = 0;
     }
 
+    /**
+     * Creates a DispenserType with a specific number of items and cost.
+     *
+     * @param setNoOfItems - The initial number of items in the dispenser.
+     * @param setCost - The cost of the product in cents.
+     */
     DispenserType(int setNoOfItems, int setCost) {
         this.numberOfItems = setNoOfItems;
         this.cost = setCost;
@@ -66,6 +82,12 @@ public class JuiceMachine {
         System.out.println("0. Exit");
     }
 
+    /**
+     * Sell a selected product and handle the transaction.
+     *
+     * @param selection - The user's product selection (1 to 4).
+     * @param numOfItems - The quantity of items to be purchased.
+     */
     public static void sellProduct(int selection, int numOfItems) {
         if (selection >= 1 && selection <= dispenserType.length) {
             DispenserType selectedDispenser = dispenserType[selection - 1];
