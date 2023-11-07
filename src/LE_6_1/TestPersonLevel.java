@@ -54,7 +54,7 @@ class MyDate {
 		long currentHour = totalHours % 60;
 		
 		int yearsSince1970 = (int) (totalHours / 8760);
-		years = 1970 + yearsSince1970
+//		years = 1970 + yearsSince1970;
 		
 	}
 }
