@@ -110,7 +110,7 @@ public class JuiceMachine {
                         System.out.print("Please deposit " + remainingBalance + " more to buy: ");
                     } else {
                         int change = depositedAmount - productCost;
-                        cashRegister.acceptAmount(productCost);
+                        cashRegister.acceptAmount(depositedAmount);
                         cashRegister.acceptAmount(-change);
 
                         for (int i = 1; i <= numOfItems; i++) {
