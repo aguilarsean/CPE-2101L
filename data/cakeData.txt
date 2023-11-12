@@ -1,0 +1,64 @@
+OrderCake
+Chocolate Cake
+15.0
+2.5
+ReadyMadeCake
+Vanilla Cake
+20.0
+5
+OrderCake
+Strawberry Cake
+12.5
+3.0
+ReadyMadeCake
+Lemon Cake
+18.0
+4
+OrderCake
+Red Velvet Cake
+22.0
+2.8
+ReadyMadeCake
+Carrot Cake
+17.5
+6
+OrderCake
+Blueberry Cake
+19.0
+3.2
+ReadyMadeCake
+Coconut Cake
+16.0
+5
+OrderCake
+Pineapple Cake
+14.5
+3.5
+ReadyMadeCake
+Banana Cake
+21.0
+4
+OrderCake
+Raspberry Cake
+18.0
+2.7
+ReadyMadeCake
+Orange Cake
+19.5
+5
+OrderCake
+Mango Cake
+20.0
+3.0
+ReadyMadeCake
+Peach Cake
+16.5
+4
+OrderCake
+Hazelnut Cake
+16.0
+2.9
+ReadyMadeCake
+Apple Cake
+15.0
+6
