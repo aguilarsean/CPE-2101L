@@ -8,6 +8,10 @@ public class ReadymakeCake extends Cake {
         this.quantity = q;
     }
 
+    public int getQuantity() {
+        return this.quantity;
+    }
+
     public double calcPrice() {
         return super.rate*quantity;
     }

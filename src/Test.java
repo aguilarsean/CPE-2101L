@@ -1,19 +1,17 @@
 import java.util.Scanner;
 
 public class Test {
+    private int x;
+
+    Test(int x) {
+        this.x = x;
+    }
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Test obj1 = new Test(5);
+        Test obj2 = new Test(15);
 
-        System.out.print("Hello World? (1 or 0): ");
-        int in = scanner.nextInt();
-        scanner.nextLine();
-
-        if (in == 1) {
-            System.out.println("Hello World!");
-        }
-        System.out.println("Adios");
-        System.out.print("This is a test");
-
-        scanner.close();
+        System.out.println(obj1.x);
+        System.out.println(obj2.x);
     }
 }

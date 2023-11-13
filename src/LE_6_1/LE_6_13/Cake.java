@@ -9,6 +9,14 @@ public class Cake {
         this.rate = r;
     }
 
+    public String getCakeName() {
+        return this.name;
+    }
+
+    public double getRate() {
+        return this.rate;
+    }
+
     public double calcPrice() {
         return 0;
     }
@@ -16,4 +24,5 @@ public class Cake {
     public String toString() {
         return "Cake: " + name + "\tRate: " + rate;
     }
+
 }

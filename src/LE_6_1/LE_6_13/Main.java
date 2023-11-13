@@ -38,17 +38,30 @@ public class Main {
 
     private static void displayTotalPrice(ArrayList<Cake> cakes) {
         double totalPrice = cakes.stream().mapToDouble(Cake::calcPrice).sum();
-        System.out.println("Total Price of the cakes: " + totalPrice);
+        System.out.println("\nTotal Price of the cakes: " + totalPrice);
     }
 
     private static void displayReadyMakeCake(ArrayList<Cake> cakes) {
-        System.out.println("Ready-Made Cakes Sold:");
+        System.out.println("\nReady-Made Cakes Sold:");
         cakes.stream().filter(cake -> cake.getClass() == ReadymakeCake.class).forEach(cake -> System.out.println(cake.toString()));
     }
 
     private static void displayHighestPriced(ArrayList<Cake> cakes) {
-        double highestPrice = cakes.stream().mapToDouble(Cake::calcPrice).max().orElse(0);
-        System.out.println("Highest Price Cake Sold: " + highestPrice);
+        Cake highestPricedCake = cakes.stream().max((cake1, cake2) -> Double.compare(cake1.calcPrice(), cake2.calcPrice())).orElse(null);
+
+        if (highestPricedCake != null) {
+            System.out.println("\nInformation of the Highest Priced Cake Sold:");
+            System.out.println("Name: " + highestPricedCake.getCakeName());
+            if (highestPricedCake instanceof OrderCake orderCake) {
+                System.out.println("Weight: " + orderCake.getWeight());
+            } else if (highestPricedCake instanceof ReadymakeCake readyMadeCake) {
+                System.out.println("Quantity: " + readyMadeCake.getQuantity());
+            }
+            System.out.println("Rate: " + highestPricedCake.getRate());
+            System.out.println("Price: " + highestPricedCake.calcPrice());
+        } else {
+            System.out.println("\nNo cakes sold yet.");
+        }
     }
 
     private static ArrayList<Cake> generateCakesFromFile() {
@@ -67,7 +80,7 @@ public class Main {
                     double cakeWeight = Double.parseDouble(fileScanner.nextLine());
 
                     cakesFromFile.add(new OrderCake(cakeName, cakeRate, cakeWeight));
-                } else if (cakeType.equals("ReadyMakeCake")) {
+                } else if (cakeType.equals("ReadyMadeCake")) {
                     String cakeName = fileScanner.nextLine();
                     double cakeRate = Double.parseDouble(fileScanner.nextLine());
                     int cakeQuantity = Integer.parseInt(fileScanner.nextLine());
@@ -92,6 +105,9 @@ public class Main {
             for (Cake cake : cakes) {
                 System.out.println(cake.toString());
             }
+            displayReadyMakeCake(cakes);
+            displayTotalPrice(cakes);
+            displayHighestPriced(cakes);
         }
     }
 
@@ -120,6 +136,9 @@ public class Main {
                         for (Cake cake : cakes) {
                             System.out.println(cake.toString());
                         }
+                        displayReadyMakeCake(cakes);
+                        displayTotalPrice(cakes);
+                        displayHighestPriced(cakes);
                         break;
                     } else if (choice == 1) {
                         cakes.add(orderCake(scanner));
@@ -139,5 +158,6 @@ public class Main {
         } else {
             System.out.println("Invalid selection!");
         }
+        scanner.close();
     }
 }

@@ -1,7 +1,6 @@
 package LE_6_1.LE_6_11;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {

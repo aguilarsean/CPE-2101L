@@ -9,6 +9,10 @@ public class OrderCake extends Cake {
         this.weight = w;
     }
 
+    public double getWeight() {
+        return this.weight;
+    }
+
     public double calcPrice() {
         return weight*super.rate;
     }
@@ -16,4 +20,5 @@ public class OrderCake extends Cake {
     public String toString() {
         return super.toString() + "\tPrice: " + calcPrice();
     }
+
 }
