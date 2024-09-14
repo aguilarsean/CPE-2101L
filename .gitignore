@@ -1,8 +1,8 @@
-/src/PME
-/src/FE
-/src/ME
-/src/FE.drawio
-/src/Untitled Diagram.drawio
+./src/PME/
+./src/FE/
+./src/ME/
+./src/FE.drawio
+./src/Untitled Diagram.drawio
 
 ### IntelliJ IDEA ###
 out/
