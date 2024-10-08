@@ -1,5 +1,3 @@
-package ME;
-
 import java.util.Scanner;
 
 class CmConversion {

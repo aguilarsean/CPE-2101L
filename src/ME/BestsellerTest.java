@@ -1,5 +1,3 @@
-package ME;
-
 import java.text.DecimalFormat;
 
 class Bestseller {
